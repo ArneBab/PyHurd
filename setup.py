@@ -13,5 +13,5 @@ setup(name = 'PyHurd',
       author = 'Anatoly A. Kazantsev',
       author_email = 'jim-crow@rambler.ru',
       ext_modules = [pyhurd],
-      requires = ["Cython"], 
+      requires = ['Cython (>=0.9.6.14)'], 
       cmdclass = {'build_ext' : build_ext})
