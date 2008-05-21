@@ -2,7 +2,11 @@
 # -*- coding: utf-8 -*-
 
 from distutils.core import setup, Extension
-from Cython.Distutils import build_ext
+
+try:
+    from Cython.Distutils import build_ext
+except (Exception):
+    print 'You need to install Cython'
 
 pyhurd = Extension('pyhurd',
 		sources = ['pyhurd/pyhurd.pyx'])
