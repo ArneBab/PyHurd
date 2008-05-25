@@ -179,3 +179,20 @@ cdef class IO:
         """
 
         return io_mod_owner(self.io_object, owner)
+
+    def get_owner (self):
+        """
+        Get the owner of the IO object.  For terminals, this affects
+        controlling terminal behavior (see term_become_ctty).  For all
+        objects this affects old-style async IO.  Negative values represent
+        pgrps.  This has nothing to do with the owner of a file (as
+        returned by io_stat, and as used for various permission checks by
+        filesystems).  An owner of 0 indicates that there is no owner.
+
+        Return:
+             error, owner
+        """
+
+        cdef pid_t owner
+        error = io_get_owner(self.io_object, &owner)
+        return error, owner
