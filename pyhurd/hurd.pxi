@@ -13,6 +13,7 @@ cdef extern  from "hurd.h":
     ctypedef unsigned int mach_msg_type_name_t
     ctypedef unsigned int mach_msg_type_number_t
     ctypedef long loff_t
+    ctypedef int pid_t
     
     ctypedef enum:
         _MACH_PORT_NULL "MACH_PORT_NULL"

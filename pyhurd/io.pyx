@@ -165,3 +165,17 @@ cdef class IO:
         error = io_async(self.io_object, notify_port, notify_portPoly, &async_id_port)
         return error, async_id_port
 
+    def mod_owner (self, owner):
+        """
+        Set the owner of the IO object.  For terminals, this affects
+        controlling terminal behavior (see term_become_ctty).  For all
+        objects this affects old-style async IO.  Negative values represent
+        pgrps.  This has nothing to do with the owner of a file (as
+        returned by io_stat, and as used for various permission checks by
+        filesystems).  An owner of 0 indicates that there is no owner.
+
+        Return:
+             error
+        """
+
+        return io_mod_owner(self.io_object, owner)
