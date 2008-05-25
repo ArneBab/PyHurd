@@ -10,6 +10,7 @@ cdef extern  from "hurd.h":
     ctypedef unsigned int vm_size_t
     ctypedef unsigned int ipc_space_t
     ctypedef char * data_t
+    ctypedef unsigned int mach_msg_type_name_t
     ctypedef unsigned int mach_msg_type_number_t
     ctypedef long loff_t
     

@@ -147,3 +147,21 @@ cdef class IO:
 
         return io_clear_some_openmodes(self.io_object, bits_to_clear)
 
+    #Looks like we need some sort of MACH_PORT object :-)
+    def async (self, notify_port, notify_portPoly):
+        """
+        This requests that the IO object send SIGIO and SIGURG signals,
+        when appropriate, to the designated port using sig_post.  A
+        port is also returned which will be used as the reference port in
+        sending such signals (this is the "async IO ID" port).  The async
+        call is cancelled by deleting all refernces to the async_id_port.
+        Each call to io_async generates a new ASYNC_ID_PORT.
+
+        Return:
+             error, async_id_port
+        """
+
+        cdef mach_port_t async_id_port
+        error = io_async(self.io_object, notify_port, notify_portPoly, &async_id_port)
+        return error, async_id_port
+
