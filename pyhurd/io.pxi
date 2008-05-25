@@ -9,3 +9,4 @@ cdef extern  from "hurd/io.h":
     kern_return_t io_set_all_openmodes (io_t io_object, int newbits)
     kern_return_t io_get_openmodes (io_t io_object, int * bits)
     kern_return_t io_set_some_openmodes (io_t io_object, int bits_to_set)
+    kern_return_t io_clear_some_openmodes (io_t io_object, int bits_to_clear)
