@@ -130,3 +130,12 @@ cdef class IO:
         cdef int bits
         error = io_get_openmodes(self.io_object, &bits)
         return error, bits
+
+    def set_some_openmodes (self, bits_to_set):
+        """
+        Return:
+             error
+        """
+
+        return io_set_some_openmodes(self.io_object, bits_to_set)
+
