@@ -196,3 +196,17 @@ cdef class IO:
         cdef pid_t owner
         error = io_get_owner(self.io_object, &owner)
         return error, owner
+
+    def select (self, reply, timeout, select_type):
+        """
+        SELECT_TYPE is the bitwise OR of SELECT_READ, SELECT_WRITE, and SELECT_URG.
+        Block until one of the indicated types of i/o can be done "quickly", and
+        return the types that are then available.
+
+        Return:
+            error, select_type
+        """
+
+        cdef int _select_type = select_type
+        error = io_select(self.io_object, reply, timeout, &_select_type)
+        return error, _select_type
