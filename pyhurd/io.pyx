@@ -113,3 +113,15 @@ cdef class IO:
         cdef loff_t new_position
         error = io_seek(self.io_object, offset, whence, &new_position)
         return error, new_position
+
+    def set_all_openmodes(self, int newbits):
+        """
+        Return:
+             error
+
+         Hurd definition:
+            kern_return_t io_set_all_openmodes (
+                io_t io_object,
+                int newbits)
+        """
+        return io_set_all_openmodes(self.io_object, newbits)
