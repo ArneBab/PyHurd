@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# License ?
+
 from distutils.core import setup, Extension
 from Cython.Distutils import build_ext
 
