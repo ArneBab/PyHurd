@@ -15,3 +15,4 @@ setup(name = 'PyHurd',
       ext_modules = [pyhurd],
       requires = ["Cython"], 
       cmdclass = {'build_ext' : build_ext})
+
