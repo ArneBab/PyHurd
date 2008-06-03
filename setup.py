@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# License ?
+
 from distutils.core import setup, Extension
 
 try:
@@ -19,3 +21,4 @@ setup(name = 'PyHurd',
       ext_modules = [pyhurd],
       requires = ['Cython (>=0.9.6)'], 
       cmdclass = {'build_ext' : build_ext})
+
