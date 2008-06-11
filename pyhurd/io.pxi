@@ -13,4 +13,5 @@ cdef extern  from "hurd/io.h":
     kern_return_t io_async (io_t io_object, mach_port_t notify_port, mach_msg_type_name_t notify_portPoly, mach_port_t * async_id_port)
     kern_return_t io_mod_owner (io_t io_object, pid_t owner)
     kern_return_t io_get_owner (io_t io_object, pid_t * owner)
+    kern_return_t io_select (io_t io_object, mach_port_t reply, natural_t timeout, int *select_type)
 
