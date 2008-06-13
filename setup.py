@@ -4,10 +4,12 @@
 # License ?
 #   Anatoly A. Kazantsev: I think about 'GPL2 or later' or GPLv3
 
+supported_cython_versions = '0.9.6.14', '0.9.8'
+
 try:
     import Cython.Compiler.Version
-    #Ugly check, but now only this version is supported :-)
-    has_cython = Cython.Compiler.Version.version == '0.9.6.14'
+    #Ugly check
+    has_cython = Cython.Compiler.Version.version in supported_cython_versions
 except:
     has_cython = False
 
@@ -48,7 +50,8 @@ from setuptools import setup
 setup(name = 'PyHurd',
       version = '0.0.0a2',
       
-      extras_require = {'Cython' : ['Cython == 0.9.6.14']},
+      #Actually we support 0.9.6.14 release, but this version scheme is no supported by setuptools 
+      extras_require = {'Cython' : ['Cython >= 0.9.8']},
 
       ext_modules = [pyhurd],
       cmdclass = {'build_ext' : build_ext},
