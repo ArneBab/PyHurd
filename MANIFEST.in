@@ -1,3 +1,4 @@
+include README
 recursive-include examples *.py
 recursive-include pyhurd *.pxi *.pyx *.h *.c
 recursive-include test *.py
