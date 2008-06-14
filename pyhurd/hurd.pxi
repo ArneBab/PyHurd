@@ -1,23 +1,39 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-cdef extern  from "hurd.h":
-    ctypedef unsigned short mode_t
+cdef extern from "mach/port.h":
     ctypedef unsigned int mach_port_t
-    ctypedef unsigned int file_t
-    ctypedef int kern_return_t
-    ctypedef unsigned int io_t
-    ctypedef unsigned int vm_size_t
-    ctypedef unsigned int ipc_space_t
-    ctypedef char * data_t
-    ctypedef unsigned int mach_msg_type_name_t
-    ctypedef unsigned int mach_msg_type_number_t
-    ctypedef long loff_t
-    ctypedef int pid_t
-    ctypedef unsigned int natural_t
-    
+
     ctypedef enum:
         _MACH_PORT_NULL "MACH_PORT_NULL"
 
-    kern_return_t mach_port_deallocate(ipc_space_t space, mach_port_t name)
+cdef extern from "mach/message.h":
+    ctypedef unsigned int mach_msg_type_name_t
+    ctypedef unsigned int mach_msg_type_number_t
+
+cdef extern from "mach/mach_traps.h":
     mach_port_t mach_task_self()
+
+cdef extern  from "mach/mach_types.h":
+    ctypedef unsigned int ipc_space_t
+
+cdef extern  from "mach/error.h":
+    ctypedef int kern_return_t
+
+cdef extern from "mach.h":
+    ctypedef unsigned short mode_t
+    kern_return_t mach_port_deallocate(ipc_space_t space, mach_port_t name)
+
+cdef extern  from "mach/machine/vm_types.h":
+    ctypedef unsigned int vm_size_t
+    ctypedef unsigned int natural_t
+
+cdef extern  from "hurd/hurd_types.h":
+    ctypedef unsigned int file_t
+    ctypedef unsigned int io_t
+    ctypedef char * data_t
+
+cdef extern  from "hurd.h":
+    ctypedef long loff_t
+    ctypedef int pid_t
+
