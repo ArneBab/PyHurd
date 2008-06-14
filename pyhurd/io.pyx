@@ -10,7 +10,7 @@ O_CREAT = _O_CREAT
 O_TRUNC = _O_TRUNC
 
 cdef class IO:
-    cdef readonly mach_port_t io_object
+    cdef readonly io_t io_object
     
     def __new__ (self):
         self.io_object = _MACH_PORT_NULL
