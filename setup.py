@@ -57,7 +57,7 @@ fcntl = CythonExtension('pyhurd.fcntl',
 from setuptools import setup
 
 setup(name = 'PyHurd',
-      version = '0.0.0a2',
+      version = '0.0.0a3',
       
       #Actually we support 0.9.6.14 release, but this version scheme is no supported by setuptools 
       extras_require = {'Cython' : ['Cython >= 0.9.8']},
