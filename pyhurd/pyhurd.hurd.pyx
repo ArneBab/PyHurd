@@ -12,7 +12,4 @@ include "stdlib.pxi"
 include "hurd.pxi"
 
 include "io.pyx"
-include "glibc.pyx"
-
-MACH_PORT_NULL = None
 
