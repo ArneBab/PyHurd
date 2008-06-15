@@ -14,7 +14,10 @@
 
 import sys
 
-from pyhurd import *
+from pyhurd.glibc import *
+from pyhurd.hurd import *
+from pyhurd.mach import MACH_PORT_NULL
+from pyhurd.fcntl import *
 
 BUFLEN = 10 # Arbitrary
 

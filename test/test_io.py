@@ -3,9 +3,8 @@
 
 import unittest
 
-import pyhurd
-from pyhurd import file_name_lookup
-from pyhurd import O_READ, O_WRITE, O_CREAT, O_TRUNC
+from pyhurd.glibc import file_name_lookup
+from pyhurd.fcntl import O_READ, O_WRITE, O_CREAT, O_TRUNC
 
 class TestIO (unittest.TestCase):
     file_path = '/tmp/test_io'
