@@ -7,3 +7,8 @@ cdef extern from "fcntl.h":
         _O_WRITE "O_WRITE"
         _O_CREAT "O_CREAT"
         _O_TRUNC "O_TRUNC"
+
+O_READ = _O_READ
+O_WRITE = _O_WRITE
+O_CREAT = _O_CREAT
+O_TRUNC = _O_TRUNC

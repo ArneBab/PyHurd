@@ -42,8 +42,17 @@ import sys
 if 'distutils.command.build_ext' in sys.modules:
     sys.modules['distutils.command.build_ext'].Extension = Extension
 
-pyhurd = CythonExtension('pyhurd',
-		sources = ['pyhurd/pyhurd.pyx'])
+hurd = CythonExtension('pyhurd.hurd',
+		sources = ['pyhurd/pyhurd.hurd.pyx'])
+
+mach = CythonExtension('pyhurd.mach',
+		sources = ['pyhurd/pyhurd.mach.pyx'])
+
+glibc = CythonExtension('pyhurd.glibc',
+		sources = ['pyhurd/pyhurd.glibc.pyx'])
+
+fcntl = CythonExtension('pyhurd.fcntl',
+		sources = ['pyhurd/pyhurd.fcntl.pyx'])
 
 from setuptools import setup
 
@@ -53,7 +62,7 @@ setup(name = 'PyHurd',
       #Actually we support 0.9.6.14 release, but this version scheme is no supported by setuptools 
       extras_require = {'Cython' : ['Cython >= 0.9.8']},
 
-      ext_modules = [pyhurd],
+      ext_modules = [hurd, mach, glibc, fcntl],
       cmdclass = {'build_ext' : build_ext},
 
       test_suite = 'test',

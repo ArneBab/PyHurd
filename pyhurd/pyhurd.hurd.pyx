@@ -9,7 +9,7 @@ cdef extern from "gnu_source.h":
     pass
 
 include "stdlib.pxi"
-include "hurd.pxi"
 
+#IO Object
 include "io.pyx"
 
