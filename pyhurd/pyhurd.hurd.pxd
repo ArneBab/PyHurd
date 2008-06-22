@@ -22,5 +22,5 @@ cdef extern  from "hurd.h":
 from pyhurd.mach cimport MachPort
 
 cdef class IO (MachPort):
-    cdef readonly io_t io_object
+    pass
 
