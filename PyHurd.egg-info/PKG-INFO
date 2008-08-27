@@ -1,4 +1,4 @@
-Metadata-Version: 1.0
+Metadata-Version: 1.1
 Name: PyHurd
 Version: 0.0.0a3
 Summary: Pytonish GNU/Hurd
@@ -18,3 +18,4 @@ Classifier: Operating System :: POSIX :: GNU Hurd
 Classifier: Programming Language :: Python
 Classifier: Topic :: Software Development :: Libraries :: Python Modules
 Classifier: Topic :: System :: Operating System Kernels :: GNU Hurd
+Requires: Cython

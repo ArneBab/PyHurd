@@ -1,5 +1,6 @@
 MANIFEST.in
 README
+setup.cfg
 setup.py
 PyHurd.egg-info/PKG-INFO
 PyHurd.egg-info/SOURCES.txt
@@ -8,8 +9,14 @@ PyHurd.egg-info/requires.txt
 PyHurd.egg-info/top_level.txt
 examples/copy.py
 examples/dump.py
+pyhurd/fcntl.pxi
+pyhurd/glibc.pxi
+pyhurd/glibc.pyx
 pyhurd/gnu_source.h
+pyhurd/hurd.pxi
+pyhurd/io.pxi
 pyhurd/io.pyx
+pyhurd/pyhurd.c
 pyhurd/pyhurd.fcntl.c
 pyhurd/pyhurd.fcntl.pxd
 pyhurd/pyhurd.fcntl.pyx
@@ -22,6 +29,8 @@ pyhurd/pyhurd.hurd.pyx
 pyhurd/pyhurd.mach.c
 pyhurd/pyhurd.mach.pxd
 pyhurd/pyhurd.mach.pyx
+pyhurd/pyhurd.pyx
 pyhurd/stdlib.pxi
 test/__init__.py
+test/test_all.py
 test/test_io.py
