@@ -14,8 +14,9 @@
 
 import sys
 
-from pyhurd import file_name_lookup
-from pyhurd import O_READ
+from pyhurd.glibc import file_name_lookup
+from pyhurd.fcntl import O_READ
+from pyhurd.mach import MACH_PORT_NULL
 
 def main (args):
 
@@ -26,7 +27,7 @@ def main (args):
   # Open file
   f = file_name_lookup (args[1], O_READ, 0)
 
-  if f is None:
+  if f is MACH_PORT_NULL:
     print 'Could not open %s' % args[1]
     return
 

@@ -1,0 +1,11 @@
+kern_return_t : int
+data_t : char *
+loff_t : __loff_t : __off64_t
+mode_t : unsigned short
+
+mach_port_t				: natural_t : unsigned int
+vm_size_t				: natural_t : unsigned int
+mach_msg_type_number_t			: natural_t : unsigned int
+file_t			: mach_port_t	: natural_t : unsigned int
+ipc_space_t : task_t	: mach_port_t	: natural_t : unsigned int
+io_t			: mach_port_io	: natural_t : unsigned int

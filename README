@@ -1,0 +1,15 @@
+PyHurd - Pytonish GNU/Hurd
+
+PyHurd is an attempt to create full binding to GNU/Hurd API.
+It will include bindings to various GNU/Hurd libraries and 
+will have ability to create translators with python language.
+
+At this moment we're using Mercurial.
+There's two repositories (you know that's the Mercurial ;-) :
+  1. http://freehg.org/u/ArneBab/pyhurd/
+  2. http://freehg.org/u/AnatolyKazantsev/pyhurd/
+
+To get a local copy of this repositories run command:
+  hg clone url_above
+
+Please, send any comments, suggestions, ideas and patches to jim-crow@rambler.ru

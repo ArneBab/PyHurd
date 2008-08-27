@@ -1,0 +1,20 @@
+Metadata-Version: 1.0
+Name: PyHurd
+Version: 0.0.0a3
+Summary: Pytonish GNU/Hurd
+Home-page: UNKNOWN
+Author: Anatoly A. Kazantsev
+Author-email: jim-crow@rambler.ru
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Environment :: Console
+Classifier: Environment :: Other Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX :: GNU Hurd
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Operating System Kernels :: GNU Hurd
