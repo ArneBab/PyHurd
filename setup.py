@@ -70,7 +70,9 @@ setup(name = 'PyHurd',
       description = 'Pytonish GNU/Hurd',
       author = 'Anatoly A. Kazantsev',
       author_email = 'jim-crow@rambler.ru',
-
+      ext_modules = [pyhurd],
+      requires = ["Cython"], 
+      cmdclass = {'build_ext' : build_ext})
       classifiers = [
         'Development Status :: 1 - Planning',
         'Environment :: Console',
