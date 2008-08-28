@@ -15,7 +15,7 @@ class TestIO (unittest.TestCase):
         error, amount = io.write(self.test_data)
 
         self.assertEqual(error, 0, 'Errors while writing test file')
-        self.assertEqual(amount, len(self.test_data), 'Writed amount of data and lenght of data is not equal')
+        self.assertEqual(amount, len(self.test_data), 'Written amount of data and length of data is not equal')
 
     def test_1_full_read(self):
         io = file_name_lookup(self.file_path, O_READ)
