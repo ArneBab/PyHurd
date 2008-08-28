@@ -68,10 +68,13 @@ setup(name = 'PyHurd',
       test_suite = 'test',
 
       description = 'Pytonish GNU/Hurd',
+      long_description = '''
+PyHurd is an attempt to create full binding to GNU/Hurd API.
+It will include bindings to various GNU/Hurd libraries and
+will have ability to create translators with python language.
+''',
       author = 'Anatoly A. Kazantsev',
       author_email = 'jim-crow@rambler.ru',
-      requires = ["Cython"],
-      cmdclass = {'build_ext' : build_ext},
       classifiers = [
         'Development Status :: 1 - Planning',
         'Environment :: Console',
