@@ -30,7 +30,10 @@ Just instanciating the class only does some preparation,
 but doesn't lock anything. 
 """
     def __init__(self, path):
+	#: The path to the file. 
         self.path = path
+	#: The position of the file pointer in the file. 
+	self.position = 0
 
     def read(self, length = None):
 	"""Read the content of the file.
@@ -40,9 +43,11 @@ doctests:
     >>> # read the first 10 bytes
     >>> f.read(10)
     '#!/usr/bin'
+    
+TODO: Add seek (self.position) suppport to the read method! 
 """
         f = file_name_lookup(self.path, O_READ, 0)
-
+	
         if f is MACH_PORT_NULL: 
             raise Exception("File not found: %s") % path
 
@@ -60,8 +65,65 @@ doctests:
 
         if err:
             raise Exception('Could not read from file %s') % args[1]
+	
+	# Update the file pointer
+	if length is None: 
+	    self.position += amount
+	else: 
+	    self.position += length
 
         return buff
+
+    def write(self, data): 
+	"""Write a set of bytes to the file."""
+	# First get the mach outfile
+	out_file = file_name_lookup (self.path, O_WRITE | O_CREAT | O_TRUNC, 0640)
+	
+	if out_file == MACH_PORT_NULL:
+	    raise Exception('Could not open %s') % self.path
+	
+	# Write the data
+	err, amount = out_file.write (data, self.position)
+	
+	if err:
+	    raise Exception('Could not write to file %s') % self.path
+	
+	# Update the file pointer
+	self.position += amount
+	
+    def seek(self, offset, whence = 0): 
+	"""Set the file pointer to a specific position. 
+	
+    seek(offset[, whence]) -> None.  Move to new file position.
+
+    Argument offset is a byte count.  Optional argument whence defaults to
+    0 (offset from start of file, offset should be >= 0); other values are 1
+    (move relative to current position, positive or negative), and 2 (move
+    relative to end of file, usually negative, although many platforms allow
+    seeking beyond the end of a file).  If the file is opened in text mode,
+    only offsets returned by tell() are legal.  Use of other offsets causes
+    undefined behavior.
+    Note that not all file objects are seekable.
+	"""
+	# If we want absolute positioning, just replace the position in the file. 
+	if whence == 0: 
+	    self.position = offset
+	# If we want relative positioning, add the offset to the position
+	elif whence == 1: 
+	    self.position += offset
+	elif whence == 2: 
+	    # And if we want positioning from the end, first get the file length, then update the position
+	    # get the size of the file
+	    
+	    # Get the filesize
+	    err, amount = f.readable ()
+
+	    if err:
+		raise Exception("Could not get number of readable bytes of %s") % path
+	    
+	    # Update the file pointer
+	    self.position = amount + offset
+
 
 ### Self-Test ###
 
