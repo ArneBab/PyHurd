@@ -1,4 +1,4 @@
-Metadata-Version: 1.1
+Metadata-Version: 1.0
 Name: PyHurd
 Version: 0.0.0a3
 Summary: Pytonish GNU/Hurd
@@ -6,7 +6,11 @@ Home-page: UNKNOWN
 Author: Anatoly A. Kazantsev
 Author-email: jim-crow@rambler.ru
 License: UNKNOWN
-Description: UNKNOWN
+Description: 
+        PyHurd is an attempt to create full binding to GNU/Hurd API.
+        It will include bindings to various GNU/Hurd libraries and
+        will have ability to create translators with python language.
+        
 Platform: UNKNOWN
 Classifier: Development Status :: 1 - Planning
 Classifier: Environment :: Console
@@ -18,4 +22,3 @@ Classifier: Operating System :: POSIX :: GNU Hurd
 Classifier: Programming Language :: Python
 Classifier: Topic :: Software Development :: Libraries :: Python Modules
 Classifier: Topic :: System :: Operating System Kernels :: GNU Hurd
-Requires: Cython
