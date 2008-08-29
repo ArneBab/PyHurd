@@ -5,7 +5,8 @@
 
  Copyright (C) 2008 Free Software Foundation, Inc.
 
- Written by Anatoly A. Kazatsev <jim-crow@rambler.ru>.
+ Written by Arne Babenhauserheide <arne_bab@web.de>
+ based on code from Anatoly A. Kazatsev <jim-crow@rambler.ru>.
 
  Distributed under the terms of the GNU General Public License.
  This is distributed "as is".  No warranty is provided at all.
