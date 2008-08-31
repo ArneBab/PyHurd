@@ -35,4 +35,12 @@ class TestIO (unittest.TestCase):
         self.assertEqual(error, 0, 'Errors while counting amount of data in test file')
         self.assertEqual(amount, len(self.test_data), 'Amount of data in test file and lenght of data is not equal')
 
+    def test_3_stat(self):
+        io = file_name_lookup(self.file_path, O_READ)
+        error, stat = io.stat()
 
+        self.assertEqual(error, 0, 'Errors while counting amount of data in test file')
+        print stat
+        self.assertEqual(stat['st_rdev'], 0, 'File is not recognized as normal file')
+        self.assertEqual(stat['st_nlink'], 1, 'Must be only one link to this file, but got %i' % stat['st_nlink'])
+        self.assertEqual(stat['st_size'], len(self.test_data), 'Size of file is not equal to length of data')

@@ -15,7 +15,8 @@ cdef extern  from "hurd/io.h":
     kern_return_t io_async (io_t io_object, mach_port_t notify_port, mach_msg_type_name_t notify_portPoly, mach_port_t * async_id_port)
     kern_return_t io_mod_owner (io_t io_object, pid_t owner)
     kern_return_t io_get_owner (io_t io_object, pid_t * owner)
-    kern_return_t io_select (io_t io_object, mach_port_t reply, natural_t timeout, int *select_type) 
+    kern_return_t io_select (io_t io_object, mach_port_t reply, natural_t timeout, int *select_type)
+    kern_return_t io_stat (io_t stat_object, io_statbuf_t *stat_info)
 
 cdef class IO (MachPort):
     def __str__ (self):
@@ -213,3 +214,30 @@ cdef class IO (MachPort):
         cdef int _select_type = select_type
         error = io_select(self.mach_port, reply, timeout, &_select_type)
         return error, _select_type
+
+    def stat (self):
+        cdef io_statbuf_t _stat
+        error = io_stat(self.mach_port, &_stat)
+
+        stat = { 'st_fstype'     : _stat.st_fstype,
+                 'st_fsid'       : _stat.st_fsid,
+                 'st_ino'        : _stat.st_ino,
+                 'st_gen'        : _stat.st_gen,
+                 'st_rdev'       : _stat.st_rdev,
+                 'st_mode'       : _stat.st_mode,
+                 'st_nlink'      : _stat.st_nlink,
+                 'st_uid'        : _stat.st_uid,
+                 'st_gid'        : _stat.st_gid,
+                 'st_size'       : _stat.st_size,
+                 'st_atime'      : _stat.st_atime,
+                 'st_atime_usec' : _stat.st_atime_usec,
+                 'st_mtime'      : _stat.st_mtime,
+                 'st_mtime_usec' : _stat.st_mtime_usec,
+                 'st_ctime'      : _stat.st_ctime,
+                 'st_ctime_usec' : _stat.st_ctime_usec,
+                 'st_blksize'    : _stat.st_blksize,
+                 'st_blocks'     : _stat.st_blocks,
+                 'st_author'     : _stat.st_author,
+                 'st_flags'      : _stat.st_flags }
+
+        return error, stat
