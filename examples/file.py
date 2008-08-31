@@ -22,7 +22,7 @@ from pyhurd.fcntl import O_READ
 from pyhurd.mach import MACH_PORT_NULL
 
 
-class file(object): 
+class HurdFile(object): 
     """A file object. It can read and write.
 
 The file objects are in fact created when doing the read or write operation, 
@@ -40,7 +40,7 @@ but doesn't lock anything.
 	"""Read the content of the file.
 
 doctests: 
-    >>> f = file("file.py")
+    >>> f = HurdFile("file.py")
     >>> # read the first 10 bytes
     >>> f.read(10)
     '#!/usr/bin'
@@ -126,6 +126,35 @@ TODO: Add seek (self.position) suppport to the read method!
 	    self.position = amount + offset
 
 
+def main(args): 
+    """Example usage of the HurdFile class.
+
+Read the file, print its contents, write something new, read and print that, write the old stuff again and rad and compare to the old stuff. 
+
+>>> main(["test", "new content"])
+"""
+    if len(args) != 3: 
+	print "Usage: file.py <filepath> <new content>"
+    
+    # Create a file object
+    f = HurdFile(args[1])
+    
+    # print its current content
+    old_content = f.read()
+    print old_content
+    
+    # Write, read and then print new content
+    f.write(args[2])
+    new_content = f.read()
+    print new_content
+    
+    # Write the old content again. 
+    f.write(old_content)
+    
+    # Compare the old content to the file content
+    print old_content == f.read()
+
+
 ### Self-Test ###
 
 def _test():
@@ -133,4 +162,7 @@ def _test():
     testmod()
 
 if __name__ == "__main__":
-  _test()
+    _test()
+    # Pass the commandline arguments to main
+    from sys import argv
+    main(argv)
