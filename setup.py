@@ -75,7 +75,6 @@ will have ability to create translators with python language.
 ''',
       author = 'Anatoly A. Kazantsev',
       author_email = 'jim-crow@rambler.ru',
-
       classifiers = [
         'Development Status :: 1 - Planning',
         'Environment :: Console',
