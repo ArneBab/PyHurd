@@ -90,7 +90,7 @@ It will include bindings to various GNU/Hurd libraries and
 will have ability to create translators with python language.
 ''',
       author = 'Anatoly A. Kazantsev',
-      author_email = 'jim-crow@rambler.ru',
+      author_email = 'anatoly@gnu.org',
       classifiers = [
         'Development Status :: 1 - Planning',
         'Environment :: Console',

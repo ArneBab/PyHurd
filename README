@@ -12,4 +12,4 @@ There's two repositories (you know that's the Mercurial ;-) :
 To get a local copy of this repositories run command:
   hg clone url_above
 
-Please, send any comments, suggestions, ideas and patches to jim-crow@rambler.ru
+Please, send any comments, suggestions, ideas and patches to anatoly@gnu.org
