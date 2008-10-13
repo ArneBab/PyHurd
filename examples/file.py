@@ -70,7 +70,10 @@ TODO: Add seek (self.position) suppport to the read method!
         if length is None and amount: 
             err, buff = f.read(amount)
         elif amount: 
-            err, buff = f.read(length)            
+            err, buff = f.read(length)
+        else: # file is empty, we don't read from it. 
+            err = 0
+            buff = ""            
 
         if err:
             raise Exception('Could not read from file %s') % args[1]
