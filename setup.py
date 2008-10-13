@@ -114,6 +114,9 @@ will have ability to create translators with python language.
 ''' + __changelog__,
       author = 'Anatoly A. Kazantsev',
       author_email = 'anatoly@gnu.org',
+      url = 'http://savannah.nongnu.org/projects/pyhurd/',
+      download_url = 'http://pypi.python.org/pypi/PyHurd/',
+      license = 'GNU GPL2'
       classifiers = [
         'Development Status :: 1 - Planning',
         'Environment :: Console',
