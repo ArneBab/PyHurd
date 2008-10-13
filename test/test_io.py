@@ -59,7 +59,20 @@ class TestIO (unittest.TestCase):
         error, stat = io.stat()
 
         self.assertEqual(error, 0, 'Errors while counting amount of data in test file')
-        print stat
+
+        print 'NOT FINISHED TEST!'
+	print 'Stat structure:'
+	
+	for key in stat:
+	    print '%s : %s' % (key, str(stat[key]))
+	
         self.assertEqual(stat['st_rdev'], 0, 'File is not recognized as normal file')
         self.assertEqual(stat['st_nlink'], 1, 'Must be only one link to this file, but got %i' % stat['st_nlink'])
         self.assertEqual(stat['st_size'], len(self.test_data), 'Size of file is not equal to length of data')
+
+    def test_4_get_openmodes(self):
+	io = file_name_lookup(self.file_path, O_READ)
+        error, bits = io.get_openmodes()
+
+	self.assertEqual(error, 0, 'Errors while counting amount of data in test file')
+	self.assertEqual(bits, 1, 'Openmode is not equal to 1')
