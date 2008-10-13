@@ -1,18 +1,26 @@
 #!/usr/bin/env python
-# encoding: utf-8
+# -*- coding: utf-8 -*-
 
-"""Create a file object, the PyHurdish way.
+"""
+file.py - Create a file object to read and write in a "pyhurdish" way.
+Copyright © 2008 Arne Babenhauserheide
+    based on code from Anatoly A. Kazatsev <anatoly@gnu.org>.
 
- Copyright (C) 2008 Free Software Foundation, Inc.
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
 
- Written by Arne Babenhauserheide <arne_bab@web.de>
- based on code from Anatoly A. Kazatsev <anatoly@gnu.org>.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
- Distributed under the terms of the GNU General Public License.
- This is distributed "as is".  No warranty is provided at all.
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 Status: Only read support, yet (coding time restraints). 
-
 """
 
 import sys
@@ -129,30 +137,33 @@ TODO: Add seek (self.position) suppport to the read method!
 def main(args): 
     """Example usage of the HurdFile class.
 
-Read the file, print its contents, write something new, read and print that, write the old stuff again and rad and compare to the old stuff. 
+Read the file, print its contents, write something new, read and print that, write the old stuff again and read and compare to the old stuff. 
 
 >>> main(["test", "new content"])
 """
     if len(args) != 3: 
-	print "Usage: file.py <filepath> <new content>"
+	print """Test the pyHurd file object: 
+    Read the file, print its contents, write something new, read and print that, write the old stuff again and read and compare to the old stuff. 
+
+Usage: file.py <filepath> <new content>"""
     
     # Create a file object
     f = HurdFile(args[1])
     
     # print its current content
     old_content = f.read()
-    print old_content
+    print "Old content:", old_content
     
     # Write, read and then print new content
     f.write(args[2])
     new_content = f.read()
-    print new_content
+    print "New content:", new_content
     
     # Write the old content again. 
     f.write(old_content)
     
     # Compare the old content to the file content
-    print old_content == f.read()
+    print "Does the file contain the old content again?", old_content == f.read()
 
 
 ### Self-Test ###
