@@ -138,40 +138,40 @@ cdef class IO (MachPort):
         return error, new_position
 
     def set_all_openmodes (self, int newbits):
-        """
+        '''
         Return:
              error
-        """
+        '''
         return io_set_all_openmodes(self.mach_port, newbits)
 
     def get_openmodes (self):
-        """
+        '''
         Return:
              error, bits
-        """
+        '''
 
         cdef int bits
         error = io_get_openmodes(self.mach_port, &bits)
         return error, bits
 
     def set_some_openmodes (self, bits_to_set):
-        """
+        '''
         Return:
              error
-        """
+        '''
 
         return io_set_some_openmodes(self.mach_port, bits_to_set)
 
     def clear_some_openmodes (self, bits_to_clear):
-        """
+        '''
         Return:
              error
-        """
+        '''
 
         return io_clear_some_openmodes(self.mach_port, bits_to_clear)
 
     def async (self, notify_port, notify_portPoly):
-        """
+        '''
         This requests that the IO object send SIGIO and SIGURG signals,
         when appropriate, to the designated port using sig_post.  A
         port is also returned which will be used as the reference port in
@@ -181,7 +181,7 @@ cdef class IO (MachPort):
 
         Return:
              error, async_id_port
-        """
+        '''
 
         cdef mach_port_t _async_id_port
         error = io_async(self.mach_port, notify_port.mach_port, notify_portPoly, &_async_id_port)
@@ -192,7 +192,7 @@ cdef class IO (MachPort):
         return error, async_id_port
 
     def mod_owner (self, owner):
-        """
+        '''
         Set the owner of the IO object.  For terminals, this affects
         controlling terminal behavior (see term_become_ctty).  For all
         objects this affects old-style async IO.  Negative values represent
@@ -202,12 +202,12 @@ cdef class IO (MachPort):
 
         Return:
              error
-        """
+        '''
 
         return io_mod_owner(self.mach_port, owner)
 
     def get_owner (self):
-        """
+        '''
         Get the owner of the IO object.  For terminals, this affects
         controlling terminal behavior (see term_become_ctty).  For all
         objects this affects old-style async IO.  Negative values represent
@@ -217,21 +217,22 @@ cdef class IO (MachPort):
 
         Return:
              error, owner
-        """
+        '''
 
         cdef pid_t owner
         error = io_get_owner(self.mach_port, &owner)
         return error, owner
 
     def select (self, reply, timeout, select_type):
-        """
-        SELECT_TYPE is the bitwise OR of SELECT_READ, SELECT_WRITE, and SELECT_URG.
-        Block until one of the indicated types of i/o can be done "quickly", and
-        return the types that are then available.
+        '''
+        SELECT_TYPE is the bitwise OR of SELECT_READ, SELECT_WRITE,
+	and SELECT_URG. Block until one of the indicated types of
+	i/o can be done "quickly", and return the types that are
+	then available.
 
         Return:
             error, select_type
-        """
+        '''
 
         cdef int _select_type = select_type
         error = io_select(self.mach_port, reply, timeout, &_select_type)
@@ -252,11 +253,8 @@ cdef class IO (MachPort):
                  'st_gid'        : _stat.st_gid,
                  'st_size'       : _stat.st_size,
                  'st_atime'      : _stat.st_atime,
-                 'st_atime_usec' : _stat.st_atime_usec,
                  'st_mtime'      : _stat.st_mtime,
-                 'st_mtime_usec' : _stat.st_mtime_usec,
                  'st_ctime'      : _stat.st_ctime,
-                 'st_ctime_usec' : _stat.st_ctime_usec,
                  'st_blksize'    : _stat.st_blksize,
                  'st_blocks'     : _stat.st_blocks,
                  'st_author'     : _stat.st_author,

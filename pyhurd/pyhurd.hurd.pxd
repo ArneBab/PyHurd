@@ -62,11 +62,8 @@ cdef extern  from "hurd/hurd_types.h":
         gid_t st_gid
         off_t st_size
         time_t st_atime
-        unsigned long int st_atime_usec
         time_t st_mtime
-        unsigned long int st_mtime_usec
         time_t st_ctime
-        unsigned long int st_ctime_usec
         blksize_t st_blksize
         blkcnt_t st_blocks
         uid_t st_author
