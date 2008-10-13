@@ -58,13 +58,13 @@ TODO: Add seek (self.position) suppport to the read method!
         f = file_name_lookup(self.path, O_READ, 0)
 	
         if f is MACH_PORT_NULL: 
-            raise Exception("File not found: %s") % path
+            raise Exception("File not found: %s") % self.path
 
         # get the size of the file
         err, amount = f.readable ()
 
         if err:
-            raise Exception("Could not get number of readable bytes of %s") % path
+            raise Exception("Could not get number of readable bytes of %s") % self.path
 
         # Read the file data
         if length is None: 
@@ -146,6 +146,7 @@ Read the file, print its contents, write something new, read and print that, wri
     Read the file, print its contents, write something new, read and print that, write the old stuff again and read and compare to the old stuff. 
 
 Usage: file.py <filepath> <new content>"""
+        exit()   
     
     # Create a file object
     f = HurdFile(args[1])
