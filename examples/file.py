@@ -67,10 +67,10 @@ TODO: Add seek (self.position) suppport to the read method!
             raise Exception("Could not get number of readable bytes of %s") % self.path
 
         # Read the file data
-        if length is None: 
+        if length is None and amount: 
             err, buff = f.read(amount)
-        else: 
-            err, buff = f.read(length)
+        elif amount: 
+            err, buff = f.read(length)            
 
         if err:
             raise Exception('Could not read from file %s') % args[1]
@@ -139,7 +139,7 @@ def main(args):
 
 Read the file, print its contents, write something new, read and print that, write the old stuff again and read and compare to the old stuff. 
 
->>> main(["test", "new content"])
+>>> main([None, "test", "new content"])
 """
     if len(args) != 3: 
 	print """Test the pyHurd file object: 
@@ -156,11 +156,13 @@ Usage: file.py <filepath> <new content>"""
     print "Old content:", old_content
     
     # Write, read and then print new content
+    f.seek(0)
     f.write(args[2])
     new_content = f.read()
     print "New content:", new_content
     
     # Write the old content again. 
+    f.seek(0)
     f.write(old_content)
     
     # Compare the old content to the file content
