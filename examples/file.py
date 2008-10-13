@@ -4,7 +4,7 @@
 """
 file.py - Create a file object to read and write in a "pyhurdish" way.
 Copyright © 2008 Arne Babenhauserheide
-    based on code from Anatoly A. Kazatsev <anatoly@gnu.org>.
+    based on code from Anatoly A. Kazanntsev <anatoly@gnu.org>.
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
