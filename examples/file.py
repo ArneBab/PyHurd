@@ -143,6 +143,12 @@ def main(args):
 Read the file, print its contents, write something new, read and print that, write the old stuff again and read and compare to the old stuff. 
 
 >>> main([None, "test", "new content"])
+Old content: nlaj
+<BLANKLINE>
+New content: new content
+Does the file contain the old content again? True
+
+
 """
     if len(args) != 3: 
 	print """Test the pyHurd file object: 
