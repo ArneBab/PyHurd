@@ -76,8 +76,14 @@ fcntl = CythonExtension('pyhurd.fcntl',
 
 from setuptools import setup
 
+## Read the NEWS file for the long description. 
+
 def read_changelog():
-    """Read and return the Changelog"""
+    """Read and return the Changelog
+
+Ideas: 
+    - Read only the last three versions or so. 
+"""
     try: 
         f = open("NEWS", "r")
         log = f.read()

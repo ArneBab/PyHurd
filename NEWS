@@ -2,3 +2,8 @@ PyHurd 0.0.0a4 (2008-10-13)
 
 * Added explicit license Info: GPLv2+
 
+PyHurd 0.0.0a3 (2008-06-15)
+
+* Added example: python file class
+* Added examples: file copy and file dump
+* Added IO bindings
