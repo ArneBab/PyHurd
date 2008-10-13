@@ -20,6 +20,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 '''
 
+## Cython basics
+
 supported_cython_versions = '0.9.6.14', '0.9.8'
 
 try:
@@ -54,6 +56,8 @@ class CythonExtension(Extension):
 import setuptools
 setuptools.Extension = CythonExtension
 
+## NEWS 
+
 import sys
 if 'distutils.command.build_ext' in sys.modules:
     sys.modules['distutils.command.build_ext'].Extension = Extension
@@ -72,6 +76,19 @@ fcntl = CythonExtension('pyhurd.fcntl',
 
 from setuptools import setup
 
+def read_changelog():
+    """Read and return the Changelog"""
+    try: 
+        f = open("NEWS", "r")
+        log = f.read()
+        f.close()
+    except: 
+        log = ""
+    return log
+
+__changelog__ = "NEWS: \n\n" + read_changelog()
+
+
 setup(name = 'PyHurd',
       version = '0.0.0a4',
       
@@ -88,7 +105,7 @@ setup(name = 'PyHurd',
 PyHurd is an attempt to create full binding to GNU/Hurd API.
 It will include bindings to various GNU/Hurd libraries and
 will have ability to create translators with python language.
-''',
+''' + __changelog__,
       author = 'Anatoly A. Kazantsev',
       author_email = 'anatoly@gnu.org',
       url = 'http://savannah.nongnu.org/projects/pyhurd/',
