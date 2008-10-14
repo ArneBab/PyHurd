@@ -108,9 +108,9 @@ setup(name = 'PyHurd',
 
       description = 'Pytonish GNU/Hurd',
       long_description = '''
-PyHurd is an attempt to create full binding to GNU/Hurd API.
-It will include bindings to various GNU/Hurd libraries and
-will have ability to create translators with python language.
+PyHurd is an attempt to create full Python bindings to the GNU/Hurd API. 
+It will include bindings to various GNU/Hurd libraries 
+and will have the ability to create translators in Python. 
 ''' + __changelog__,
       author = 'Anatoly A. Kazantsev',
       author_email = 'anatoly@gnu.org',
