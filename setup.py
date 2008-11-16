@@ -40,7 +40,7 @@ from distutils.core import Extension
 
 class CythonExtension(Extension):
     def __init__ (self, *args, **kw):
-        Extension.__init__(self, *args, **kw)
+        Extension.__init__(self, include_dirs = ['./pyhurd/'], *args, **kw)
 
         if not has_cython:
             s = []
