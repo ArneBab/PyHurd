@@ -96,7 +96,7 @@ __changelog__ = "NEWS: \n\n" + read_changelog()
 
 
 setup(name = 'PyHurd',
-      version = '0.0.0a4',
+      version = '0.0.0a5',
       
       #Actually we support 0.9.6.14 release, but this version scheme is no supported by setuptools 
       extras_require = {'Cython' : ['Cython >= 0.9.8']},
