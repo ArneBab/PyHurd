@@ -22,7 +22,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 ## Cython basics
 
-supported_cython_versions = '0.9.6.14', '0.9.8'
+supported_cython_versions = '0.9.6.14', '0.9.8', '0.10'
 
 try:
     import Cython.Compiler.Version
