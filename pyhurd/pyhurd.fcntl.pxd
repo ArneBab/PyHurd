@@ -25,3 +25,10 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 cdef extern from "gnu_source.h":
     pass
+
+cdef extern from "fcntl.h":
+    ctypedef enum:
+        _O_READ "O_READ"
+        _O_WRITE "O_WRITE"
+        _O_CREAT "O_CREAT"
+        _O_TRUNC "O_TRUNC"

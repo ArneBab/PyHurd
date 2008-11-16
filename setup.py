@@ -63,16 +63,16 @@ if 'distutils.command.build_ext' in sys.modules:
     sys.modules['distutils.command.build_ext'].Extension = Extension
 
 hurd = CythonExtension('pyhurd.hurd',
-		sources = ['pyhurd/pyhurd.hurd.pyx'])
+		sources = ['pyhurd/pyhurd.hurd.py'])
 
 mach = CythonExtension('pyhurd.mach',
-		sources = ['pyhurd/pyhurd.mach.pyx'])
+		sources = ['pyhurd/pyhurd.mach.py'])
 
 glibc = CythonExtension('pyhurd.glibc',
-		sources = ['pyhurd/pyhurd.glibc.pyx'])
+		sources = ['pyhurd/pyhurd.glibc.py'])
 
 fcntl = CythonExtension('pyhurd.fcntl',
-		sources = ['pyhurd/pyhurd.fcntl.pyx'])
+		sources = ['pyhurd/pyhurd.fcntl.py'])
 
 from setuptools import setup
 

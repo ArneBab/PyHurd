@@ -22,13 +22,17 @@ You should have received a copy of the GNU General Public License along
 with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 """
+import cython
+from pyhurd.mach import MACH_PORT_NULL
 
-MACH_PORT_NULL = None
+@cython.locals(io=IO)
+def file_name_lookup(filename, flags, mode = 0):
+    port = _file_name_lookup(filename, flags, mode)
 
-cdef class MachPort:
-    def __new__ (self):
-       self.mach_port = _MACH_PORT_NULL
+    if port == _MACH_PORT_NULL:
+        return MACH_PORT_NULL
 
-    def __dealloc__ (self):
-       mach_port_deallocate(mach_task_self(), self.mach_port)
-       
+    io = IO()
+    io.mach_port = port
+
+    return io

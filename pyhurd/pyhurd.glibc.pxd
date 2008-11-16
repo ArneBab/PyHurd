@@ -25,3 +25,10 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 cdef extern from "gnu_source.h":
     pass
+
+from pyhurd.hurd cimport file_t, IO
+from pyhurd.mach cimport mode_t, _MACH_PORT_NULL
+
+cdef extern from "stdio.h":
+    file_t _file_name_lookup "file_name_lookup" (char * name, int flags, mode_t mode)
+    

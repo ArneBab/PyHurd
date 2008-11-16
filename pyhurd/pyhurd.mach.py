@@ -23,6 +23,12 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 """
 
-cdef extern from "stdlib.h":
-    ctypedef unsigned int size_t
-    void * malloc (size_t size)
+MACH_PORT_NULL = None
+
+class MachPort:
+    def __new__ (self):
+       self.mach_port = _MACH_PORT_NULL
+
+    def __dealloc__ (self):
+       mach_port_deallocate(mach_task_self(), self.mach_port)
+       
