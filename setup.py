@@ -116,7 +116,7 @@ and will have the ability to create translators in Python.
       author_email = 'anatoly@gnu.org',
       url = 'http://savannah.nongnu.org/projects/pyhurd/',
       download_url = 'http://pypi.python.org/pypi/PyHurd/',
-      license = 'GNU GPL2'
+      license = 'GNU GPL2',
       classifiers = [
         'Development Status :: 1 - Planning',
         'Environment :: Console',
