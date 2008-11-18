@@ -111,7 +111,7 @@ setup(name = 'PyHurd',
 PyHurd is an attempt to create full Python bindings to the GNU/Hurd API. 
 It will include bindings to various GNU/Hurd libraries 
 and will have the ability to create translators in Python. 
-''' + __changelog__,
+''' + __changelog__.split('\n\n\n')[0],
       author = 'Anatoly A. Kazantsev',
       author_email = 'anatoly@gnu.org',
       url = 'http://savannah.nongnu.org/projects/pyhurd/',
