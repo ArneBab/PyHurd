@@ -3,9 +3,11 @@ PyHurd 0.0.0a5 (2008-11-16)
 * Add Cython 0.10 to supported versions
 * Rewrite code with pure python mode support
 
+
 PyHurd 0.0.0a4 (2008-10-13)
 
 * Added explicit license Info: GPLv2+
+
 
 PyHurd 0.0.0a3 (2008-06-15)
 
