@@ -54,7 +54,23 @@ class TestIO (unittest.TestCase):
         self.assertEqual(error, 0, 'Errors while counting amount of data in test file')
         self.assertEqual(amount, len(self.test_data), 'Amount of data in test file and lenght of data is not equal')
 
-    def test_3_stat(self):
+    def test_3_seek(self):
+        io = file_name_lookup(self.file_path, O_READ)
+        error, new_position = io.seek(2)
+
+        self.assertEqual(error, 0, 'Errors while seek')
+        self.assertEqual(new_position, 2, 'New position is wrong')
+
+        result = io.read(1)
+
+        self.assertNotEqual(result, None, 'Test file can not be empty')
+
+        error, data = result
+
+        self.assertEqual(error, 0, 'Errors while reading from file')
+        self.assertEqual(data, self.test_data[2 : 3], 'Got wrong substring "%s", should be "%s"' % (data, self.test_data[2 : 3]))
+
+    def test_4_stat(self):
         io = file_name_lookup(self.file_path, O_READ)
         error, stat = io.stat()
 
@@ -70,7 +86,7 @@ class TestIO (unittest.TestCase):
         self.assertEqual(stat['st_nlink'], 1, 'Must be only one link to this file, but got %i' % stat['st_nlink'])
         self.assertEqual(stat['st_size'], len(self.test_data), 'Size of file is not equal to length of data')
 
-    def test_4_get_openmodes(self):
+    def test_5_get_openmodes(self):
 	io = file_name_lookup(self.file_path, O_READ)
         error, bits = io.get_openmodes()
 
