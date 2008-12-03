@@ -77,7 +77,7 @@ class IO:
     return error, write_amount
     
   @cython.locals(new_position=loff_t)
-  def seek (self, offset, whence):
+  def seek (self, offset, whence=0):
     '''
     Change current read/write offset
 
