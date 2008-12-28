@@ -91,4 +91,10 @@ cdef extern  from "hurd/io.h":
     kern_return_t io_stat (io_t stat_object, io_statbuf_t *stat_info)
 
 cdef class IO (MachPort):
-    pass
+  pass
+
+cdef extern from "hurd/fs.h":
+  kern_return_t file_get_translator (file_t file, data_t *translator, mach_msg_type_number_t * translator_size)
+
+cdef class File (MachPort):
+  pass

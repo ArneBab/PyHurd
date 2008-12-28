@@ -207,3 +207,13 @@ class IO:
             'st_flags'   : _stat.st_flags }
 
     return error, stat
+
+class File:
+  @cython.locals(data=data_t, size=mach_msg_type_number_t)
+  def get_translator(self):
+    data = cython.char[1024]
+    size = cython.sizeof(data)
+    error = file_get_translator(self.mach_port, cython.address(data), cython.address(size))
+
+    return error, data
+
