@@ -23,12 +23,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 """
 
-cdef extern from "gnu_source.h":
-    pass
-
-from pyhurd.hurd cimport file_t, IO
-from pyhurd.mach cimport mode_t, _MACH_PORT_NULL
-
-cdef extern from "stdio.h":
-    file_t _file_name_lookup "file_name_lookup" (char * name, int flags, mode_t mode)
-    
+from _hurd import IO, File
+from _glibc import *
+from _fcntl import *

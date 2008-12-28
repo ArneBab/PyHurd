@@ -2,7 +2,10 @@
 # -*- coding: utf-8 -*-
 
 '''
-dump.py - Dump a file to stdout in a "pyhurdish" way.
+pyHurd - A pytonish GNU/Hurd
+'''
+
+__copyright__ = """
 Copyright (C) 2008 Anatoly A. Kazantsev
 
 This program is free software; you can redistribute it and/or modify
@@ -18,41 +21,18 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along
 with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-'''
-
-import sys
-
-from hurd import file_name_lookup, O_READ
+"""
+import cython
 from mach import MACH_PORT_NULL
 
-def main (args):
+@cython.locals(io=IO)
+def file_name_lookup(filename, flags, mode = 0):
+    port = _file_name_lookup(filename, flags, mode)
 
-  if not len (args) == 2:
-    print 'Usage: %s <filename>' % args[0]
-    return
+    if port == _MACH_PORT_NULL:
+        return MACH_PORT_NULL
 
-  # Open file
-  f = file_name_lookup (args[1], O_READ, 0)
+    io = IO()
+    io.mach_port = port
 
-  if f is MACH_PORT_NULL:
-    print 'Could not open %s' % args[1]
-    return
-
-  # Get size of file
-  err, amount = f.readable ()
-
-  if err:
-    print 'Could not get number of readable bytes'
-    return
-
-  # Read
-  err, buf = f.read(amount)
-
-  if err:
-    print 'Could not read from file %s' % args[1]
-    return
-
-  print buf
-
-if __name__ == "__main__":
-  main(sys.argv)
+    return io

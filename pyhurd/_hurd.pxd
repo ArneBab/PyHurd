@@ -73,7 +73,7 @@ cdef extern  from "hurd.h":
     ctypedef long loff_t
     ctypedef int pid_t
 
-from pyhurd.mach cimport MachPort, kern_return_t, vm_size_t, mach_msg_type_number_t, mach_port_t, mach_msg_type_name_t, natural_t
+from _mach cimport MachPort, kern_return_t, vm_size_t, mach_msg_type_number_t, mach_port_t, mach_msg_type_name_t, natural_t
 
 cdef extern  from "hurd/io.h":
     kern_return_t io_readable (io_t io_object, vm_size_t * amount)

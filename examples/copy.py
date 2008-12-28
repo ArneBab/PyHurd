@@ -22,10 +22,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 import sys
 
-from pyhurd.glibc import *
-from pyhurd.hurd import *
-from pyhurd.mach import MACH_PORT_NULL
-from pyhurd.fcntl import *
+from hurd import *
+from mach import MACH_PORT_NULL
 
 BUFLEN = 10 # Arbitrary
 

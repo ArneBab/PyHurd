@@ -62,17 +62,17 @@ import sys
 if 'distutils.command.build_ext' in sys.modules:
     sys.modules['distutils.command.build_ext'].Extension = Extension
 
-hurd = CythonExtension('pyhurd.hurd',
-		sources = ['pyhurd/pyhurd.hurd.py'])
+_hurd = CythonExtension('_hurd',
+		sources = ['pyhurd/_hurd.py'])
 
-mach = CythonExtension('pyhurd.mach',
-		sources = ['pyhurd/pyhurd.mach.py'])
+_mach = CythonExtension('_mach',
+		sources = ['pyhurd/_mach.py'])
 
-glibc = CythonExtension('pyhurd.glibc',
-		sources = ['pyhurd/pyhurd.glibc.py'])
+_glibc = CythonExtension('_glibc',
+		sources = ['pyhurd/_glibc.py'])
 
-fcntl = CythonExtension('pyhurd.fcntl',
-		sources = ['pyhurd/pyhurd.fcntl.py'])
+_fcntl = CythonExtension('_fcntl',
+		sources = ['pyhurd/_fcntl.py'])
 
 from setuptools import setup
 
@@ -97,11 +97,15 @@ __changelog__ = "NEWS: \n\n" + read_changelog()
 
 setup(name = 'PyHurd',
       version = '0.0.0a5',
-      
+
       #Actually we support 0.9.6.14 release, but this version scheme is no supported by setuptools 
       extras_require = {'Cython' : ['Cython >= 0.9.8']},
 
-      ext_modules = [hurd, mach, glibc, fcntl],
+      package_dir = {'' : 'pyhurd'},
+      packages = [''],
+
+      py_modules = ['hurd', 'mach'],
+      ext_modules = [_fcntl, _mach, _hurd, _glibc],
       cmdclass = {'build_ext' : build_ext},
 
       test_suite = 'test',

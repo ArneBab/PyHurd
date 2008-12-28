@@ -22,8 +22,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 import unittest
 
-from pyhurd.glibc import file_name_lookup
-from pyhurd.fcntl import O_READ, O_WRITE, O_CREAT, O_TRUNC
+from hurd import file_name_lookup, O_READ, O_WRITE, O_CREAT, O_TRUNC
 
 class TestIO (unittest.TestCase):
     file_path = '/tmp/test_io'

@@ -25,9 +25,8 @@ Status: Only read support, yet (coding time restraints).
 
 import sys
 
-from pyhurd.glibc import file_name_lookup
-from pyhurd.fcntl import O_READ, O_WRITE, O_CREAT, O_TRUNC
-from pyhurd.mach import MACH_PORT_NULL
+from hurd import file_name_lookup, O_READ, O_WRITE, O_CREAT, O_TRUNC
+from mach import MACH_PORT_NULL
 
 
 class HurdFile(object): 
