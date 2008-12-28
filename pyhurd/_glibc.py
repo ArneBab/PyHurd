@@ -23,7 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 """
 import cython
-from mach import MACH_PORT_NULL
+from _mach import MACH_PORT_NULL
 
 @cython.locals(io=IO)
 def file_name_lookup(filename, flags, mode = 0):
@@ -32,7 +32,4 @@ def file_name_lookup(filename, flags, mode = 0):
     if port == _MACH_PORT_NULL:
         return MACH_PORT_NULL
 
-    io = IO()
-    io.mach_port = port
-
-    return io
+    return port

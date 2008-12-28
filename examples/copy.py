@@ -28,18 +28,18 @@ from mach import MACH_PORT_NULL
 BUFLEN = 10 # Arbitrary
 
 def main (args):
-  if not len(args) == 3:
+  if not len (args) == 3:
     print 'Usage: %s <inputfile> <outputfile>' % args[0]
     return
 
   # Open files
-  in_file = file_name_lookup (args[1], O_READ, 0)
+  in_file = Port.lookup (args[1], O_READ)
 
   if in_file == MACH_PORT_NULL:
     print 'Could not open %s' % args[1]
     return
 
-  out_file = file_name_lookup (args[2], O_WRITE | O_CREAT | O_TRUNC, 0640)
+  out_file = Port.lookup (args[2], O_WRITE | O_CREAT | O_TRUNC, 0640)
 
   if out_file == MACH_PORT_NULL:
     print 'Could not open %s' % args[2]

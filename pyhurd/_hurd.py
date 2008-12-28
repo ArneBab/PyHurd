@@ -26,6 +26,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 import cython
 
 class IO:
+  def __init__ (self, *args, **kwargs):
+    MachPort.__init__(self, *args, **kwargs)
+
   def __str__ (self):
     return 'IO: mach port: %s' % self.mach_port
 

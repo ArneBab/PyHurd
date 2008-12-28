@@ -25,7 +25,7 @@ Status: Only read support, yet (coding time restraints).
 
 import sys
 
-from hurd import file_name_lookup, O_READ, O_WRITE, O_CREAT, O_TRUNC
+from hurd import Port, O_READ, O_WRITE, O_CREAT, O_TRUNC
 from mach import MACH_PORT_NULL
 
 
@@ -54,7 +54,7 @@ doctests:
     
 TODO: Add seek (self.position) suppport to the read method! 
 """
-        f = file_name_lookup(self.path, O_READ, 0)
+        f = Port.lookup(self.path, O_READ)
 	
         if f is MACH_PORT_NULL: 
             raise Exception("File not found: %s") % self.path
@@ -88,7 +88,7 @@ TODO: Add seek (self.position) suppport to the read method!
     def write(self, data): 
 	"""Write a set of bytes to the file."""
 	# First get the mach outfile
-	out_file = file_name_lookup (self.path, O_WRITE | O_CREAT | O_TRUNC, 0640)
+	out_file = Port.lookup (self.path, O_WRITE | O_CREAT | O_TRUNC, 0640)
 	
 	if out_file == MACH_PORT_NULL:
 	    raise Exception('Could not open %s') % self.path

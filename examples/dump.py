@@ -22,7 +22,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 import sys
 
-from hurd import file_name_lookup, O_READ
+from hurd import Port, O_READ
 from mach import MACH_PORT_NULL
 
 def main (args):
@@ -32,7 +32,7 @@ def main (args):
     return
 
   # Open file
-  f = file_name_lookup (args[1], O_READ, 0)
+  f = Port.lookup(args[1], O_READ)
 
   if f is MACH_PORT_NULL:
     print 'Could not open %s' % args[1]

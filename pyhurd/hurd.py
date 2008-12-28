@@ -24,5 +24,28 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 """
 
 from _hurd import IO, File
-from _glibc import *
 from _fcntl import *
+
+class Port(IO, File):
+  def __init__ (self, *args, **kwargs):
+    IO.__init__(self, *args, **kwargs)
+
+  @staticmethod
+  def lookup (filename, flags, mode = 0):
+    import _glibc
+    port_name = _glibc.file_name_lookup(filename, flags, mode)
+
+    if port_name:
+      return Port(port_name = port_name)
+    else:
+      return None
+
+
+
+
+
+
+
+
+
+

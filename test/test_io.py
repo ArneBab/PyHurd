@@ -22,22 +22,22 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 import unittest
 
-from hurd import file_name_lookup, O_READ, O_WRITE, O_CREAT, O_TRUNC
+from hurd import Port, O_READ, O_WRITE, O_CREAT, O_TRUNC
 
 class TestIO (unittest.TestCase):
     file_path = '/tmp/test_io'
     test_data = 'abcd'
 
     def test_0_full_write(self):
-        io = file_name_lookup(self.file_path, O_CREAT | O_WRITE | O_TRUNC, 0644)
-        error, amount = io.write(self.test_data)
+        io = Port.lookup (self.file_path, O_CREAT | O_WRITE | O_TRUNC, 0644)
+        error, amount = io.write (self.test_data)
 
         self.assertEqual(error, 0, 'Errors while writing test file')
         self.assertEqual(amount, len(self.test_data), 'Written amount of data and length of data is not equal')
 
     def test_1_full_read(self):
-        io = file_name_lookup(self.file_path, O_READ)
-        result = io.read(len(self.test_data))
+        io = Port.lookup (self.file_path, O_READ)
+        result = io.read (len(self.test_data))
 
         self.assertNotEqual(result, None, 'Test file can not be empty')
 
@@ -47,14 +47,14 @@ class TestIO (unittest.TestCase):
         self.assertEqual(data, self.test_data, 'Can not read "%s" from test file' % self.test_data)
 
     def test_2_readable(self):
-        io = file_name_lookup(self.file_path, O_READ)
+        io = Port.lookup (self.file_path, O_READ)
         error, amount = io.readable()
 
         self.assertEqual(error, 0, 'Errors while counting amount of data in test file')
         self.assertEqual(amount, len(self.test_data), 'Amount of data in test file and lenght of data is not equal')
 
     def test_3_seek(self):
-        io = file_name_lookup(self.file_path, O_READ)
+        io = Port.lookup (self.file_path, O_READ)
         error, new_position = io.seek(2)
 
         self.assertEqual(error, 0, 'Errors while seek')
@@ -70,7 +70,7 @@ class TestIO (unittest.TestCase):
         self.assertEqual(data, self.test_data[2 : 3], 'Got wrong substring "%s", should be "%s"' % (data, self.test_data[2 : 3]))
 
     def test_4_stat(self):
-        io = file_name_lookup(self.file_path, O_READ)
+        io = Port.lookup (self.file_path, O_READ)
         error, stat = io.stat()
 
         self.assertEqual(error, 0, 'Errors while counting amount of data in test file')
@@ -86,7 +86,7 @@ class TestIO (unittest.TestCase):
         self.assertEqual(stat['st_size'], len(self.test_data), 'Size of file is not equal to length of data')
 
     def test_5_get_openmodes(self):
-	io = file_name_lookup(self.file_path, O_READ)
+	io = Port.lookup (self.file_path, O_READ)
         error, bits = io.get_openmodes()
 
 	self.assertEqual(error, 0, 'Errors while counting amount of data in test file')
