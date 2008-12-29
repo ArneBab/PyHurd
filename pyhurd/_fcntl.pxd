@@ -32,3 +32,4 @@ cdef extern from "fcntl.h":
         _O_WRITE "O_WRITE"
         _O_CREAT "O_CREAT"
         _O_TRUNC "O_TRUNC"
+        _O_NOTRANS "O_NOTRANS"
