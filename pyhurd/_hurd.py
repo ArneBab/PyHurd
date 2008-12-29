@@ -214,9 +214,12 @@ class IO:
 class File:
   @cython.locals(data=data_t, size=mach_msg_type_number_t)
   def get_translator(self):
-    data = cython.char[1024]
-    size = cython.sizeof(data)
+    size = 1025 * cython.sizeof(char)
+    data = <data_t>malloc(size)
+
     error = file_get_translator(self.mach_port, cython.address(data), cython.address(size))
+
+    data[size] = c'\0'
 
     return error, data
 
