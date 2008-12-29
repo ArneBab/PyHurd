@@ -23,7 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 """
 
-from _hurd import IO, File
+from _hurd import IO, File, _getdport
 from _fcntl import *
 
 class Port(IO, File):
@@ -40,12 +40,11 @@ class Port(IO, File):
     else:
       return None
 
+  @staticmethod
+  def getdport (fd):
+    port_name = _getdport(fd)
 
-
-
-
-
-
-
-
-
+    if port_name:
+      return Port(port_name = port_name)
+    else:
+      return None

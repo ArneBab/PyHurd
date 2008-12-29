@@ -24,6 +24,16 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 '''
 
 import cython
+from _mach import MACH_PORT_NULL
+
+@cython.locals(port_name=io_t)
+def _getdport(fd):
+  port_name = getdport(fd)
+
+  if port_name == _MACH_PORT_NULL:
+    return MACH_PORT_NULL
+  else:
+    return port_name
 
 class IO:
   def __init__ (self, *args, **kwargs):
