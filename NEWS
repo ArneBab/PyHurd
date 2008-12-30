@@ -1,3 +1,12 @@
+PyHurd 0.0.0a6 (2008-12-30)
+* Redesign of modules hierarchy:
+  - Remove pyhurd package
+  - New `hurd' and `mach' modules
+* New class `Port'
+* Add Cython 0.10.2 and 0.10.3 to supported versions
+* Add example: showtrans utility
+* Bug fixes
+
 PyHurd 0.0.0a5 (2008-11-16)
 
 * Add Cython 0.10 to supported versions
