@@ -31,7 +31,6 @@ try:
 except:
     has_cython = False
 
-has_cython = False
 from Cython.Distutils.build_ext import build_ext
 
 from distutils.core import Extension
