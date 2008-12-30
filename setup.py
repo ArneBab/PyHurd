@@ -31,32 +31,25 @@ try:
 except:
     has_cython = False
 
-if has_cython:
-    from Cython.Distutils.build_ext import build_ext
-else:
-    from setuptools.command.build_ext import build_ext
+has_cython = False
+from Cython.Distutils.build_ext import build_ext
 
 from distutils.core import Extension
 
 class CythonExtension(Extension):
     def __init__ (self, *args, **kw):
-        Extension.__init__(self, include_dirs = ['./pyhurd/'], *args, **kw)
+        Extension.__init__(self, *args, **kw)
 
         if not has_cython:
             s = []
             for f in self.sources:
-                if f.endswith('.pyx'):
-                    name = f[0 : -4]
-                    s.append(name + '.c')
-                else:
-                    s.append(f)
+                name = f[0 : -len('py')]
+                s.append(name + 'c')
 
             self.sources = s
 
 import setuptools
 setuptools.Extension = CythonExtension
-
-## NEWS 
 
 import sys
 if 'distutils.command.build_ext' in sys.modules:
@@ -75,6 +68,7 @@ _fcntl = CythonExtension('_fcntl',
 		sources = ['pyhurd/_fcntl.py'])
 
 from setuptools import setup
+
 
 ## Read the NEWS file for the long description. 
 
