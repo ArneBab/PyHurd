@@ -22,7 +22,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 ## Cython basics
 
-supported_cython_versions = '0.9.6.14', '0.9.8', '0.10', '0.10.2', '0.10.3'
+supported_cython_versions = '0.9.8', '0.10', '0.10.2', '0.10.3'
 
 try:
     import Cython.Compiler.Version
@@ -92,7 +92,6 @@ __changelog__ = "NEWS: \n\n" + read_changelog()
 setup(name = 'PyHurd',
       version = '0.0.0a5',
 
-      #Actually we support 0.9.6.14 release, but this version scheme is no supported by setuptools 
       extras_require = {'Cython' : ['Cython >= 0.9.8']},
 
       package_dir = {'' : 'pyhurd'},
