@@ -90,7 +90,7 @@ __changelog__ = "NEWS: \n\n" + read_changelog()
 
 
 setup(name = 'PyHurd',
-      version = '0.0.0a5',
+      version = '0.0.0a6',
 
       extras_require = {'Cython' : ['Cython >= 0.9.8']},
 
