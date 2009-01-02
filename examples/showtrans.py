@@ -24,7 +24,7 @@ import sys, errno, os
 
 from optparse import OptionParser
 
-from hurd import Port, O_NOTRANS
+from hurd import Port, O_NOTRANS, error
 from mach import MACH_PORT_NULL
 
 
@@ -53,11 +53,11 @@ parser.add_option('-t', '--translated', dest='show_untrans',
 
 def print_node_trans (node, name):
   if node is MACH_PORT_NULL:
-    sys.stderr.write('Error: %s\n' % name)
+    error(0, -1, name)
   else:
-    error, trans = node.get_translator()
+    err, trans = node.get_translator()
 
-    if not error:
+    if not err:
       if not silent:
         if print_prefix:
           print '%s: %s' % (name, trans)
@@ -66,11 +66,11 @@ def print_node_trans (node, name):
 
       global status
       status = 0
-    elif error == errno.EINVAL:
+    elif err == errno.EINVAL:
       if not silent and print_prefix and show_untrans:
         print name
     else:
-      sys.stderr.write('Error: %s. %s\n' % name, os.strerror(error))
+      error(0, err, name)
 
 def main ():
   options, args = parser.parse_args()
