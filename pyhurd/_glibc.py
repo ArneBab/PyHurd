@@ -27,9 +27,17 @@ from _mach import MACH_PORT_NULL
 
 @cython.locals(io=IO)
 def file_name_lookup(filename, flags, mode = 0):
-    port = _file_name_lookup(filename, flags, mode)
+  port = _file_name_lookup(filename, flags, mode)
 
-    if port == _MACH_PORT_NULL:
-        return MACH_PORT_NULL
+  if port == _MACH_PORT_NULL:
+    return MACH_PORT_NULL
 
-    return port
+  return port
+
+def getcrdir ():
+  port = _getcrdir()
+
+  if port == _MACH_PORT_NULL:
+    return MACH_PORT_NULL
+
+  return port

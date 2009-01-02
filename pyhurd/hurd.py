@@ -51,6 +51,12 @@ class Port(IO, File):
     else:
       return None
 
+  @staticmethod
+  def getcrdir ():
+    import _glibc
+    port_name = _glibc.getcrdir()
+
+    return Port(port_name = port_name) if port_name else None
 
 def error (status, errnum, message):
   line = inspect.getframeinfo(inspect.currentframe().f_back)[1]

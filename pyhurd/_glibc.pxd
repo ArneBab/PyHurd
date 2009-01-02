@@ -30,5 +30,7 @@ from _hurd cimport file_t, IO
 from _mach cimport mode_t, _MACH_PORT_NULL
 
 cdef extern from "stdio.h":
-    file_t _file_name_lookup "file_name_lookup" (char * name, int flags, mode_t mode)
-    
+  file_t _file_name_lookup "file_name_lookup" (char * name, int flags, mode_t mode)
+
+cdef extern from "hurd.h":
+  file_t _getcrdir "getcrdir" ()
