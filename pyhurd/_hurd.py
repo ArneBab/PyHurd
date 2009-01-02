@@ -234,4 +234,4 @@ class File:
     return error, data
 
   def syncfs (wait, do_children):
-    return file_synfs(self.mach_port, int(wait), int(data))
+    return file_synfs(self.mach_port, int(wait), int(do_children))
