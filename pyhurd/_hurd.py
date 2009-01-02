@@ -222,14 +222,16 @@ class IO:
     return error, stat
 
 class File:
-  @cython.locals(data=data_t, size=mach_msg_type_number_t)
-  def get_translator(self):
-    size = 1025 * cython.sizeof(char)
-    data = <data_t>malloc(size)
+  @cython.locals (data=data_t, size=mach_msg_type_number_t)
+  def get_translator (self):
+    size = 1025 * cython.sizeof (char)
+    data = <data_t>malloc (size)
 
-    error = file_get_translator(self.mach_port, cython.address(data), cython.address(size))
+    error = file_get_translator (self.mach_port, cython.address(data), cython.address(size))
 
     data[size] = c'\0'
 
     return error, data
 
+  def syncfs (wait, do_children):
+    return file_synfs(self.mach_port, int(wait), int(data))

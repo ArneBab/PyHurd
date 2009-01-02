@@ -96,6 +96,7 @@ cdef class IO (MachPort):
 
 cdef extern from "hurd/fs.h":
   kern_return_t file_get_translator (file_t file, data_t *translator, mach_msg_type_number_t * translator_size)
+  kern_return_t file_syncfs (file_t file, int wait, int do_children)
 
 cdef class File (MachPort):
   pass
