@@ -34,7 +34,7 @@ class Port(IO, File):
     IO.__init__(self, *args, **kwargs)
 
   @staticmethod
-  def lookup (filename, flags, mode = 0):
+  def lookup (filename, flags = 0, mode = 0):
     import _glibc
     port_name = _glibc.file_name_lookup(filename, flags, mode)
 
