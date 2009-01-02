@@ -23,6 +23,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 """
 
+import sys, inspect, os
+
 from _hurd import IO, File, _getdport
 from _fcntl import *
 
@@ -48,3 +50,14 @@ class Port(IO, File):
       return Port(port_name = port_name)
     else:
       return None
+
+
+def error (status, errnum, message):
+  line = inspect.getframeinfo(inspect.currentframe().f_back)[1]
+  error_description = os.strerror(errnum)
+  output = '%s:%d: %s\n%s\n' % (sys.argv[0], line, message, error_description)
+
+  sys.stderr.write(output)
+
+  if status:
+    sys.exit(status)
