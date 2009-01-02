@@ -26,6 +26,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 import sys, inspect, os
 
 from _hurd import IO, File, _getdport
+from _mach import MACH_PORT_NULL
 from _fcntl import *
 
 class Port(IO, File):
@@ -37,26 +38,20 @@ class Port(IO, File):
     import _glibc
     port_name = _glibc.file_name_lookup(filename, flags, mode)
 
-    if port_name:
-      return Port(port_name = port_name)
-    else:
-      return None
+    return Port(port_name = port_name) if port_name else MACH_PORT_NULL
 
   @staticmethod
   def getdport (fd):
     port_name = _getdport(fd)
 
-    if port_name:
-      return Port(port_name = port_name)
-    else:
-      return None
+    return Port(port_name = port_name) if port else MACH_PORT_NULL
 
   @staticmethod
   def getcrdir ():
     import _glibc
     port_name = _glibc.getcrdir()
 
-    return Port(port_name = port_name) if port_name else None
+    return Port(port_name = port_name) if port_name else MACH_PORT_NULL
 
 def error (status, errnum, message):
   line = inspect.getframeinfo(inspect.currentframe().f_back)[1]
