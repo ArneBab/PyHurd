@@ -24,6 +24,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 '''
 
 import cython
+
 from _mach import MACH_PORT_NULL
 
 @cython.locals(port_name=io_t)
@@ -146,10 +147,8 @@ class IO:
 
     error = io_async(self.mach_port, notify_port.mach_port, notify_portPoly, cython.address(_async_id_port))
 
-    async_id_port = MachPort()
-    async_id_port.mach_port = _async_id_port
-
-    return error, async_id_port
+    from hurd import Port
+    return error, Port(port_name = _async_id_port)
 
   def mod_owner (self, owner):
     '''
