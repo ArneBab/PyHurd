@@ -40,9 +40,6 @@ class IO:
   def __init__ (self, *args, **kwargs):
     MachPort.__init__(self, *args, **kwargs)
 
-  def __str__ (self):
-    return 'IO: mach port: %s' % self.mach_port
-
   @cython.locals(amount=vm_size_t)
   def readable (self):
     '''
