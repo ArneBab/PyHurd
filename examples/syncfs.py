@@ -59,7 +59,7 @@ def main ():
     sync_one ('/', Port.getcrdir())
   else:
     for arg in args:
-      sync_one (arg, Port.lookup(arg, 0))
+      sync_one (arg, Port.lookup(arg))
 
 if __name__ == "__main__":
   main()
