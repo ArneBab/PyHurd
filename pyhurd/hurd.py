@@ -44,7 +44,7 @@ class Port(IO, File):
   def getdport (fd):
     port_name = _getdport(fd)
 
-    return Port(port_name = port_name) if port else MACH_PORT_NULL
+    return Port(port_name = port_name) if port_name else MACH_PORT_NULL
 
   @staticmethod
   def getcrdir ():
