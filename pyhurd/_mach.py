@@ -26,12 +26,15 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 MACH_PORT_NULL = None
 
 class MachPort:
-    def __cinit__ (cls, *args, **kwargs):
-        cls.mach_port = _MACH_PORT_NULL
+  def __cinit__ (cls, *args, **kwargs):
+    cls.mach_port = _MACH_PORT_NULL
 
-    def __init__ (self, port_name = MACH_PORT_NULL):
-        if port_name:
-            self.mach_port = port_name
+  def __init__ (self, port_name = MACH_PORT_NULL):
+    if port_name:
+      self.mach_port = port_name
 
-    def __dealloc__ (self):
-        mach_port_deallocate(mach_task_self(), self.mach_port)
+  def __str__ (self):
+    return 'mach_port: %d' % self.mach_port
+
+  def __dealloc__ (self):
+    mach_port_deallocate(mach_task_self(), self.mach_port)
