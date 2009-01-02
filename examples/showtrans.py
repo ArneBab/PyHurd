@@ -70,7 +70,7 @@ def print_node_trans (node, name):
       if not silent and print_prefix and show_untrans:
         print name
     else:
-      sys.stderr.write('Error: %s\n' % name)
+      sys.stderr.write('Error: %s. %s\n' % name, os.strerror(error))
 
 def main ():
   options, args = parser.parse_args()
