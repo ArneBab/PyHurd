@@ -90,6 +90,7 @@ cdef extern  from "hurd/io.h":
     kern_return_t io_get_owner (io_t io_object, pid_t * owner)
     kern_return_t io_select (io_t io_object, mach_port_t reply, natural_t timeout, int *select_type)
     kern_return_t io_stat (io_t stat_object, io_statbuf_t *stat_info)
+    kern_return_t io_reauthenticate (io_t auth_object, mach_port_t rendezvous2, mach_msg_type_name_t rendevous2Poly)
 
 cdef class IO (MachPort):
   pass

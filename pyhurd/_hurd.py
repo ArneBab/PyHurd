@@ -217,6 +217,9 @@ class IO:
 
     return error, stat
 
+  def reauthenticate (self, rendezvous2, rendevous2Poly):
+    return io_reauthenticate (self.mach_port, rendezvous2.mach_port, rendevous2Poly)
+
 class File:
   def chown (self, uid, gid):
     return file_chown (self.mach_port, uid, gid)
