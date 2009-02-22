@@ -221,6 +221,9 @@ class File:
   def chown (self, uid, gid):
     return file_chown (self.mach_port, uid, gid)
 
+  def chauthor (self, new_author):
+    return file_chauthor (self.mach_port, new_author)
+
   @cython.locals (data=data_t, size=mach_msg_type_number_t)
   def get_translator (self):
     size = 1025 * cython.sizeof (char)

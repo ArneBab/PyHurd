@@ -30,16 +30,25 @@ class TestFile (unittest.TestCase):
 
     Port.lookup (file_path, O_WRITE | O_CREAT | O_TRUNC, 0644).write(test_data)
 
-    def test_0_get_translator(self):
+    def test_0_get_translator (self):
 	file = Port.lookup ('/proc', O_NOTRANS)
         error, translator = file.get_translator()
 
-        self.assertEqual(error, 0, 'Errors while getting translator for file')
-        self.assertEqual(translator, '/hurd/procfs', 'Wrong translator for /proc')
+        self.assertEqual (error, 0, 'Errors while getting translator for file')
+        self.assertEqual (translator, '/hurd/procfs', 'Wrong translator for /proc')
 
-    def test_1_chown(self):
+    def test_1_chown (self):
         #TODO
         #file = Port.lookup (self.file_path, O_READ)
-        #print file.chown(1000, 1000)
-        #print file.stat()
+        #print file.chown (1000, 1000)
+        #print file.stat ()
         pass
+
+    def test_2_chauthor (self):
+        file = Port.lookup (self.file_path, O_READ)
+        
+        error = file.chauthor (1001)
+        self.assertEqual (error, 0, 'Errors while changing author of file')
+
+        error, stat = file.stat ()
+        self.assertEqual (stat['st_author'], 1001, 'Got wrong author uid "%i", should be "%i"' % (stat['st_author'], 1001))
