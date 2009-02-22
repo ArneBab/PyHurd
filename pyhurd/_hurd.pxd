@@ -97,6 +97,7 @@ cdef class IO (MachPort):
 cdef extern from "hurd/fs.h":
   kern_return_t file_chown (file_t chown_file, uid_t new_owner, gid_t new_group)
   kern_return_t file_chauthor (file_t chauth_file, uid_t new_author)
+  kern_return_t file_chmod (file_t chmod_file, mode_t new_mode)
   kern_return_t file_get_translator (file_t file, data_t *translator, mach_msg_type_number_t * translator_size)
   kern_return_t file_syncfs (file_t file, int wait, int do_children)
 

@@ -224,6 +224,9 @@ class File:
   def chauthor (self, new_author):
     return file_chauthor (self.mach_port, new_author)
 
+  def chmod (self, new_mode):
+    return file_chmod (self.mach_port, new_mode)
+
   @cython.locals (data=data_t, size=mach_msg_type_number_t)
   def get_translator (self):
     size = 1025 * cython.sizeof (char)

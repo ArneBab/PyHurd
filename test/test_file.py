@@ -52,3 +52,12 @@ class TestFile (unittest.TestCase):
 
         error, stat = file.stat ()
         self.assertEqual (stat['st_author'], 1001, 'Got wrong author uid "%i", should be "%i"' % (stat['st_author'], 1001))
+
+    def test_3_chmod (self):
+        file = Port.lookup (self.file_path, O_READ)
+
+        error = file.chmod (0666)
+        self.assertEqual (error, 0, 'Errors while chmodding file')
+
+        error, stat = file.stat ()
+        self.assertEqual ((stat['st_mode']), 0100666, 'Got wrong mode "%i", should be "%i"' % (stat['st_mode'], 0100666))
