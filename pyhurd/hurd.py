@@ -25,11 +25,11 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 import sys, inspect, os
 
-from _hurd import IO, File, _getdport
+from _hurd import IO, File, Fsys, _getdport, FS_RETRY_NORMAL, FS_RETRY_REAUTH, FS_RETRY_MAGICAL
 from _mach import MACH_PORT_NULL
 from _fcntl import *
 
-class Port(IO, File):
+class Port(IO, File, Fsys):
   def __init__ (self, *args, **kwargs):
     IO.__init__(self, *args, **kwargs)
 

@@ -27,6 +27,10 @@ import cython
 
 from _mach import MACH_PORT_NULL
 
+FS_RETRY_NORMAL = _FS_RETRY_NORMAL
+FS_RETRY_REAUTH = _FS_RETRY_REAUTH
+FS_RETRY_MAGICAL = _FS_RETRY_MAGICAL
+
 @cython.locals(port_name=io_t)
 def _getdport(fd):
   port_name = getdport(fd)
@@ -246,3 +250,44 @@ class File:
 
   def set_translator (self, passive_flags, active_flags, oldtrans_flags, passive, active, activePoly):
     return file_set_translator (self.mach_port, passive_flags, active_flags, oldtrans_flags, passive, len(passive), active.mach_port, activePoly)
+
+class Fsys:
+  @cython.locals (_file = mach_port_t, _do_retry = retry_type, _gen_uids = idarray_t, _gen_gids = idarray_t)
+  def getroot (self, dotdot_node, dotdot_nodePoly, flags, do_retry, retry_name, file, gen_uids = None, gen_gids = None):
+    _file = file.mach_port
+    _do_retry = do_retry
+
+    _gen_uids_len = len (gen_uids)
+    if gen_uids:
+      _gen_uids = <idarray_t>malloc (_gen_uids_len * cython.sizeof (uid_t))
+
+      for x in range (0, _gen_uids_len):
+        _gen_uids[x] = gen_uids[x]
+    else:
+      _gen_uids = NULL
+      _gen_uids_len = 0
+
+    _gen_gids_len = len (gen_gids)
+    if gen_gids:
+      _gen_gids = <idarray_t>malloc (_gen_gids_len * cython.sizeof (uid_t))
+
+      for x in range (0, _gen_gids_len):
+        _gen_gids[x] = gen_gids[x]
+    else:
+      _gen_gids = NULL
+      _gen_gids_len = 0
+
+    error = fsys_getroot (self.mach_port,
+                          dotdot_node.mach_port,
+                          dotdot_nodePoly,
+                          _gen_uids,
+                          _gen_uids_len,
+                          _gen_gids,
+                          _gen_gids_len,
+                          flags,
+                          cython.address(_do_retry),
+                          retry_name,
+                          cython.address(_file))
+
+    from hurd import Port
+    return error, _do_retry, Port(mach_port = _file)
