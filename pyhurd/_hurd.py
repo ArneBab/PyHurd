@@ -243,3 +243,6 @@ class File:
 
   def syncfs (self, wait, do_children):
     return file_syncfs (self.mach_port, int(wait), int(do_children))
+
+  def set_translator (self, passive_flags, active_flags, oldtrans_flags, passive, active, activePoly):
+    return file_set_translator (self.mach_port, passive_flags, active_flags, oldtrans_flags, passive, len(passive), active.mach_port, activePoly)

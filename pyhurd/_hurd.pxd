@@ -47,6 +47,7 @@ cdef extern from "sys/stat.h":
 
 cdef extern  from "hurd/hurd_types.h":
     ctypedef unsigned int file_t
+    ctypedef unsigned int fsys_t
     ctypedef unsigned int io_t
     ctypedef char * data_t
 
@@ -101,6 +102,7 @@ cdef extern from "hurd/fs.h":
   kern_return_t file_chmod (file_t chmod_file, mode_t new_mode)
   kern_return_t file_get_translator (file_t file, data_t *translator, mach_msg_type_number_t * translator_size)
   kern_return_t file_syncfs (file_t file, int wait, int do_children)
+  kern_return_t file_set_translator (file_t file, int passive_flags, int active_flags, int oldtrans_flags, data_t passive, mach_msg_type_number_t passiveCnt, mach_port_t active, mach_msg_type_name_t activePoly)
 
 cdef class File (MachPort):
   pass
