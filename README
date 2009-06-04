@@ -8,11 +8,8 @@ We're using Mercurial.
 
 Main repository: http://hg.savannah.nongnu.org/hgweb/pyhurd
 
-Developers repositories:
-  * http://freehg.org/u/ArneBab/pyhurd/
-
-To get a local copy of this repositories run command:
-  hg clone <url_above>
+To get a local copy of this repository run command:
+  hg clone http://hg.savannah.nongnu.org/hgweb/pyhurd
 
 Please, send any comments, suggestions, ideas and patches
 to anatoly@gnu.org
