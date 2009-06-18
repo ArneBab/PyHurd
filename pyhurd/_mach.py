@@ -23,6 +23,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 """
 
+import cython
+
 MACH_PORT_NULL = None
 
 class MachPort:
@@ -38,3 +40,8 @@ class MachPort:
 
   def __dealloc__ (self):
     mach_port_deallocate(mach_task_self(), self.mach_port)
+
+@cython.locals (port_name = mach_port_t)
+def mach_reply_port ():
+  port_name = _mach_reply_port ()
+  return MachPort (port_name) if port_name != _MACH_PORT_NULL else MACH_PORT_NULL

@@ -36,9 +36,11 @@ cdef extern from "mach/message.h":
     ctypedef unsigned int mach_msg_type_number_t
 
 cdef extern from "mach/mach_traps.h":
+    mach_port_t _mach_reply_port "mach_reply_port" ()
     mach_port_t mach_task_self()
 
 cdef extern  from "mach/mach_types.h":
+    ctypedef unsigned int task_t
     ctypedef unsigned int ipc_space_t
 
 cdef extern  from "mach/error.h":
