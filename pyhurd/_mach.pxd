@@ -35,6 +35,14 @@ cdef extern from "mach/message.h":
     ctypedef unsigned int mach_msg_type_name_t
     ctypedef unsigned int mach_msg_type_number_t
 
+    ctypedef enum:
+      _MACH_MSG_TYPE_MOVE_RECEIVE 'MACH_MSG_TYPE_MOVE_RECEIVE'
+      _MACH_MSG_TYPE_MOVE_SEND 'MACH_MSG_TYPE_MOVE_SEND'
+      _MACH_MSG_TYPE_MOVE_SEND_ONCE 'MACH_MSG_TYPE_MOVE_SEND_ONCE'
+      _MACH_MSG_TYPE_COPY_SEND 'MACH_MSG_TYPE_COPY_SEND'
+      _MACH_MSG_TYPE_MAKE_SEND 'MACH_MSG_TYPE_MAKE_SEND'
+      _MACH_MSG_TYPE_MAKE_SEND_ONCE 'MACH_MSG_TYPE_MAKE_SEND_ONCE'
+
 cdef extern from "mach/mach_traps.h":
     mach_port_t _mach_reply_port "mach_reply_port" ()
     mach_port_t mach_task_self()
