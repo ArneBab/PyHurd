@@ -46,6 +46,7 @@ cdef extern from "sys/stat.h":
   ctypedef long int blkcnt_t
 
 cdef extern  from "hurd/hurd_types.h":
+  ctypedef unsigned int auth_t
   ctypedef unsigned int file_t
   ctypedef unsigned int fsys_t
   ctypedef unsigned int io_t
@@ -84,6 +85,16 @@ cdef extern  from "hurd.h":
   io_t getdport(int fd)
 
 from _mach cimport MachPort, kern_return_t, vm_size_t, mach_msg_type_number_t, mach_port_t, mach_msg_type_name_t, natural_t, _MACH_PORT_NULL
+
+cdef extern from 'hurd/auth.h':
+  kern_return_t auth_user_authenticate (auth_t handle,
+                                        mach_port_t rendezvous,
+                                        mach_msg_type_name_t rendezvousPoly,
+                                        mach_port_t * newport)
+
+cdef class Auth (MachPort):
+  pass
+
 
 cdef extern  from "hurd/io.h":
   kern_return_t io_readable (io_t io_object, vm_size_t * amount)

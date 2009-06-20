@@ -40,6 +40,13 @@ def _getdport(fd):
   else:
     return port_name
 
+class Auth:
+  @cython.locals (newport = mach_port_t)
+  def user_authenticate (self, rendezvous, rendezvousPoly):
+    error = auth_user_authenticate (self.mach_port, rendezvous.mach_port, rendezvousPoly, cython.address(newport))
+    from hurd import Port
+    return error, Port(port_name = newport)
+
 class IO:
   def __init__ (self, *args, **kwargs):
     MachPort.__init__(self, *args, **kwargs)
