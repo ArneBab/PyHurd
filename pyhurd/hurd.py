@@ -25,7 +25,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 import sys, inspect, os
 
-from _hurd import Auth, IO, File, Fsys, _getdport, FS_RETRY_NORMAL, FS_RETRY_REAUTH, FS_RETRY_MAGICAL
+from _hurd import Auth, IO, File, Fsys, _getdport, FS_RETRY_NORMAL, FS_RETRY_REAUTH, FS_RETRY_MAGICAL, INIT_PORT_CWDIR, INIT_PORT_CRDIR, INIT_PORT_AUTH, INIT_PORT_PROC, INIT_PORT_CTTYID, INIT_PORT_BOOTSTRAP, INIT_PORT_MAX
 from _mach import MACH_PORT_NULL
 from _fcntl import *
 

@@ -60,6 +60,15 @@ cdef extern  from "hurd/hurd_types.h":
     _FS_RETRY_REAUTH "FS_RETRY_REAUTH" = 2
     _FS_RETRY_MAGICAL "FS_RETRY_MAGICAL" = 3
 
+  ctypedef enum:
+    _INIT_PORT_CWDIR "INIT_PORT_CWDIR"
+    _INIT_PORT_CRDIR "INIT_PORT_CRDIR"
+    _INIT_PORT_AUTH "INIT_PORT_AUTH"
+    _INIT_PORT_PROC "INIT_PORT_PROC"
+    _INIT_PORT_CTTYID "INIT_PORT_CTTYID"
+    _INIT_PORT_BOOTSTRAP "INIT_PORT_BOOTSTRAP"
+    _INIT_PORT_MAX "INIT_PORT_MAX"
+
   ctypedef struct io_statbuf_t:
     int st_fstype
     fsid_t st_fsid
