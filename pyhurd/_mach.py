@@ -48,6 +48,12 @@ class MachPort:
   def __dealloc__ (self):
     mach_port_deallocate(mach_task_self(), self.mach_port)
 
+  def destroy (self, space = None):
+    return mach_port_destroy (mach_task_self () if None else space, self.mach_port)
+
+  def deallocate (self, space = None):
+    return mach_port_deallocate (mach_task_self () if None else space, self.mach_port)
+
 @cython.locals (port_name = mach_port_t)
 def mach_reply_port ():
   port_name = _mach_reply_port ()

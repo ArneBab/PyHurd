@@ -56,6 +56,7 @@ cdef extern  from "mach/error.h":
 
 cdef extern from "mach.h":
     ctypedef unsigned short mode_t
+    kern_return_t mach_port_destroy (ipc_space_t space, mach_port_t name)
     kern_return_t mach_port_deallocate(ipc_space_t space, mach_port_t name)
 
 cdef extern  from "mach/machine/vm_types.h":
