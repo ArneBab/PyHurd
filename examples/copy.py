@@ -65,7 +65,7 @@ def main (args):
     in_offset += len (buf)
 
     # Write
-    while not buf == '':
+    while buf:
       err, amount = out_file.write (buf, out_offset)
 
       if err:
