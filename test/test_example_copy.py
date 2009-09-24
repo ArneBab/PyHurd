@@ -3,7 +3,7 @@
 
 '''
 pyHurd - A pytonish GNU/Hurd
-Copyright (C) 2008, 2009 Anatoly A. Kazantsev
+Copyright (C) 2009 Anatoly A. Kazantsev and Arne Babenhauserheide
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ from examples import main
 
 # !!! UNTRIED TEST !!! #
 
-class TestFile (unittest.TestCase):
+class TestCopy (unittest.TestCase):
     file_path1 = '/tmp/test_file1'
     file_path2 = '/tmp/test_file2'
     test_data = 'abcd'
