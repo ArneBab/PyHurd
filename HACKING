@@ -1,0 +1,50 @@
+Hacking Guide
+=============
+
+Mercurial
+---------
+
+PyHurd uses Mercurial for version tracking. 
+
+For unstable development we use feature branches. 
+
+When a feature is finished, just merge the corresponding revision into the default branch: 
+
+	hg update default
+	hg merge feature-x
+	hg ci -m "merged feature X into default"
+
+Merge default into unstable as often as possible.
+
+To start a new feature, 
+
+1. first start a new branch with the name of the feature starting from default. 
+2. Then commit away and push whenever you finish something which might be of interest to 
+others, regardless how marginal. 
+3. When your feature is stable, merge it into default.
+4. When the feature is done and needs no more work, close the branch.
+
+	hg up default # start from default, automatic when using a fresh clone
+	hg branch feature-x
+	# do some changes
+	hg commit -m "started feature X" 
+	hg push 
+
+	# commit and push as you want
+
+	hg update default
+	hg merge feature-x
+	hg ci -m "merged feadure X into default"
+
+	hg ci --close-branch -m "finished feature X"
+
+To improve a feature after it was officially closed, first merge default into the feature branch 
+(to get it up to date), then work just as if you had started it.
+
+	hg up feature-x
+	hg merge default
+	hg ci -m "merged default into feature X"
+	# commit, push, repeat, finish
+
+Generally merge default into your feature as often as possible.
+	
